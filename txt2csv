@@ -8,7 +8,7 @@ path = ""
 opts = []
 
 if len(sys.argv) == 1:
-    path = "/Users/Ryan/Desktop/text_test"
+    path = "/Users/Ryan/Desktop/text_test/"
     #path = raw_input("Enter your path where your files are located (Ex: /Users/JohnCena/Downloads/)\n>")
 
 else:
@@ -28,7 +28,7 @@ if 'h' in opts:
 
 def convert_text_file(text_file, csv_file):
     with open(text_file, 'rb') as txt_file, open(csv_file, 'wb') as new_csv:
-        dialect = csv.Sniffer().sniff(txt_file.read(1024), delimiters='|,;\t')
+        dialect = csv.Sniffer().sniff(txt_file.read(1073741824), delimiters='\t|,;')
         txt_file.seek(0)
         reader = csv.reader(txt_file, dialect)
         out_csv = csv.writer(new_csv)

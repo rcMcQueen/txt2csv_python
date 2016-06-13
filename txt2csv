@@ -8,8 +8,7 @@ path = ""
 opts = []
 
 if len(sys.argv) == 1:
-    path = "/Users/Ryan/Desktop/text_test/"
-    #path = raw_input("Enter your path where your files are located (Ex: /Users/JohnCena/Downloads/)\n>")
+    path = raw_input("Enter your path where your files are located (Ex: /Users/JohnCena/Downloads/)\n>")
 
 else:
     path = sys.argv[-1]

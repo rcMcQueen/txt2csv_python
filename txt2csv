@@ -96,6 +96,6 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
 
 
 print "Starting Conversion"
-print failed_conversions
-
+for failed_file in failed_conversions:
+    print "Failed to convert: " + failed_file
 convert_text_files(path)

@@ -6,6 +6,7 @@ import csv
 
 path = ""
 opts = []
+failed_conversions = []
 
 if len(sys.argv) == 1:
     path = raw_input("Enter your path where your files are located (Ex: /Users/JohnCena/Downloads/)\n>")
@@ -36,7 +37,6 @@ def convert_text_file(text_file, csv_file):
 
 
 
-
 def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0):
     if os.path.isdir(local_path):
         # Find total # of files
@@ -63,9 +63,14 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
 
                 # Check the txt file to find what type of delimiter
                 text_path = os.path.join(local_path, filename)
-                convert_text_file(text_path, csv_filename)
-                    #if 'd' in opts:
-                        #os.remove(text_path)
+                try:
+                    convert_text_file(text_path, csv_filename)
+                except:
+                    failed_conversions.append(filename)
+                    continue
+
+                if 'd' in opts:
+                    os.remove(text_path)
                 _count += 1
 
             ratio = (_count / _total_count)
@@ -73,6 +78,8 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
             sys.stdout.write(
                 '\r[' + ("=" * progress_length) + " " * (40 - progress_length) + ']%d' % (ratio * 100) + '%')
             sys.stdout.flush()
+
+
 
         if _user_called:
             print "\nConversion finished. \n" + str(_count) + " files converted"
@@ -89,5 +96,6 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
 
 
 print "Starting Conversion"
+print failed_conversions
 
 convert_text_files(path)

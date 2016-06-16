@@ -88,7 +88,7 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
 
     elif os.path.isfile(path):
         with open(path[:-4] + ".csv", 'wb') as csv_file:
-            convert_text_file(csv_file)
+            convert_text_file(path, csv_file)
             if 'd' in opts:
                 os.remove(path)
     else:

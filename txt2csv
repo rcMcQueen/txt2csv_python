@@ -63,12 +63,16 @@ def convert_text_files(local_path, _user_called=True, _total_count=0.0, _count=0
 
                 # Check the txt file to find what type of delimiter
                 text_path = os.path.join(local_path, filename)
+<<<<<<< HEAD
                 try:
                     convert_text_file(text_path, csv_filename)
                 except:
                     failed_conversions.append(filename)
                     continue
 
+=======
+                convert_text_file(text_path, csv_filename)
+>>>>>>> 9544c6deb99b27fcd604aa70c2223c98546f62c6
                 if 'd' in opts:
                     os.remove(text_path)
                 _count += 1
